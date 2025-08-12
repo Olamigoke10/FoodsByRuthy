@@ -23,6 +23,7 @@ const Header = () => {
           <div className="flex-shrink-0">
             <NavLink to="/" className="flex items-center">
               <img src={logo} alt="Restaurant Logo" className="h-12 w-auto" />
+              <span>FoodsByRuthy</span>
             </NavLink>
           </div>
 

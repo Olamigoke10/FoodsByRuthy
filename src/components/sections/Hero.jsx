@@ -1,131 +1,225 @@
-import { ArrowRight } from 'lucide-react';
-import heroImage from '../../assets/imgs/heroimg.jpg';
-import { motion } from 'framer-motion';
-import React from 'react';
+import { ChevronDown, Menu, X } from "lucide-react";
+import logo from "../../assets/imgs/resturantLogo.png";
+import heroImg from "../../assets/imgs/ruthyhero.jpg"
+import { useState } from "react";
+import { NavLink, useLocation } from "react-router-dom";
+import React from "react";
 
 const Hero = () => {
-  // Animation variants
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.3
-      }
-    }
-  };
+  const [isOpen, setIsOpen] = useState(false);
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const [isMobileDropdown, setIsMobileDropdown] = useState(false);
+  const location = useLocation();
 
-  const item = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.6 } }
-  };
-
-  const imageZoom = {
-    hidden: { scale: 1.1 },
-    show: { scale: 1, transition: { duration: 1.5, ease: "easeOut" } }
+  // Check if a path is active
+  const isActive = (path) => {
+    return location.pathname === path;
   };
 
   return (
-    <section className="relative h-screen max-h-[800px] overflow-hidden">
-      {/* Background Image with Overlay - Animated */}
-      <motion.div 
-        className="absolute inset-0 z-0"
-        initial="hidden"
-        animate="show"
-        variants={imageZoom}
-      >
-        <img
-          src={heroImage}
-          alt="Delicious dishes from Foods by Ruthy"
-          className="w-full h-full object-cover"
+    <>
+      {/* Hero Section with Background Image */}
+      <div className="relative h-screen">
+        {/* Background Image */}
+        <div className="absolute inset-0 bg-cover bg-center z-0"
+          style={{backgroundImage: `url(${heroImg})` }}
         />
-        <div className="absolute inset-0 bg-black/40"></div>
-      </motion.div>
+        
+        {/* Overlay (optional) */}
+        <div className="absolute inset-0 bg-black/30 z-0" />
+        
+        {/* Header with Transparent Background */}
+        <header className="w-full bg-transparent absolute top-0 z-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex items-center justify-between h-20">
+              {/* Logo */}
+              <div className="flex-shrink-0">
+                <NavLink to="/" className="flex items-center">
+                  <img src={logo} alt="Restaurant Logo" className="h-16 w-auto" />
+                </NavLink>
+              </div>
 
-      {/* Hero Content - Animated with stagger */}
-      <motion.div 
-        className="relative z-10 container mx-auto px-6 h-full flex flex-col justify-center"
-        initial="hidden"
-        animate="show"
-        variants={container}
-      >
-        <div className="max-w-2xl">
-          {/* Tagline */}
-          <motion.span 
-            className="text-orange-300 font-medium mb-4 inline-block"
-            variants={item}
+              {/* Mobile toggle */}
+              <div className="md:hidden flex items-center">
+                <button 
+                  onClick={() => setIsMobileOpen(!isMobileOpen)}
+                  className="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-orange-300 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-orange-500 transition-all"
+                >
+                  <span className="sr-only">Open main menu</span>
+                  {isMobileOpen ? (
+                    <X size={24} className="block" />
+                  ) : (
+                    <Menu size={24} className="block" />
+                  )}
+                </button>
+              </div>
+
+              {/* Desktop Navigation */}
+              <nav className="hidden md:flex items-center space-x-8">
+                <NavLink 
+                  to="/" 
+                  className={({ isActive }) => 
+                    `px-3 py-2 text-sm font-medium relative after:absolute after:left-1/2 after:-bottom-1 after:h-0.5 after:w-0 after:bg-orange-300 hover:after:w-[calc(100%-1.5rem)] hover:after:left-3 after:transition-all after:duration-300 ${
+                      isActive ? 'text-orange-300 after:w-[calc(100%-1.5rem)] after:left-3' : 'text-white hover:text-orange-300'
+                    }`
+                  }
+                >
+                  Home
+                </NavLink>
+
+                <NavLink 
+                  to="/menu" 
+                  className={({ isActive }) => 
+                    `px-3 py-2 text-sm font-medium relative after:absolute after:left-1/2 after:-bottom-1 after:h-0.5 after:w-0 after:bg-orange-300 hover:after:w-[calc(100%-1.5rem)] hover:after:left-3 after:transition-all after:duration-300 ${
+                      isActive ? 'text-orange-300 after:w-[calc(100%-1.5rem)] after:left-3' : 'text-white hover:text-orange-300'
+                    }`
+                  }
+                >
+                  Menu
+                </NavLink>
+
+                <NavLink 
+                  to="/about" 
+                  className={({ isActive }) => 
+                    `px-3 py-2 text-sm font-medium relative after:absolute after:left-1/2 after:-bottom-1 after:h-0.5 after:w-0 after:bg-orange-300 hover:after:w-[calc(100%-1.5rem)] hover:after:left-3 after:transition-all after:duration-300 ${
+                      isActive ? 'text-orange-300 after:w-[calc(100%-1.5rem)] after:left-3' : 'text-white hover:text-orange-300'
+                    }`
+                  }
+                >
+                  About Us
+                </NavLink>
+
+                <NavLink 
+                  to="/gallery" 
+                  className={({ isActive }) => 
+                    `px-3 py-2 text-sm font-medium relative after:absolute after:left-1/2 after:-bottom-1 after:h-0.5 after:w-0 after:bg-orange-300 hover:after:w-[calc(100%-1.5rem)] hover:after:left-3 after:transition-all after:duration-300 ${
+                      isActive ? 'text-orange-300 after:w-[calc(100%-1.5rem)] after:left-3' : 'text-white hover:text-orange-300'
+                    }`
+                  }
+                >
+                  Gallery
+                </NavLink>
+
+                <NavLink 
+                  to="/contact" 
+                  className={({ isActive }) => 
+                    `px-3 py-2 text-sm font-medium relative after:absolute after:left-1/2 after:-bottom-1 after:h-0.5 after:w-0 after:bg-orange-300 hover:after:w-[calc(100%-1.5rem)] hover:after:left-3 after:transition-all after:duration-300 ${
+                      isActive ? 'text-orange-300 after:w-[calc(100%-1.5rem)] after:left-3' : 'text-white hover:text-orange-300'
+                    }`
+                  }
+                >
+                  Contact
+                </NavLink>
+
+                <NavLink
+                  to="/reservations"
+                  className={({ isActive }) => 
+                    `ml-4 px-4 py-2 rounded-md text-sm font-medium shadow-sm hover:shadow-md transition-all duration-200 ${
+                      isActive ? 'bg-orange-700 text-white' : 'bg-orange-600 text-white hover:bg-orange-700'
+                    }`
+                  }
+                >
+                  Make Reservation
+                </NavLink>
+              </nav>
+            </div>
+          </div>
+
+          {/* Mobile Navigation */}
+          <div className={`md:hidden transition-all duration-300 ease-in-out ${isMobileOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'} bg-white/90`}>
+            <div className="px-2 pt-2 pb-4 space-y-1 sm:px-3">
+              <NavLink
+                to="/"
+                onClick={() => setIsMobileOpen(false)}
+                className={({ isActive }) => 
+                  `block px-3 py-2 rounded-md text-base font-medium transition-colors ${
+                    isActive ? 'text-orange-600 bg-orange-50' : 'text-gray-700 hover:text-orange-600 hover:bg-gray-50'
+                  }`
+                }
+              >
+                Home
+              </NavLink>
+
+              <NavLink
+                to="/menu"
+                onClick={() => setIsMobileOpen(false)}
+                className={({ isActive }) => 
+                  `block px-3 py-2 rounded-md text-base font-medium transition-colors ${
+                    isActive ? 'text-orange-600 bg-orange-50' : 'text-gray-700 hover:text-orange-600 hover:bg-gray-50'
+                  }`
+                }
+              >
+                Menu
+              </NavLink>
+
+              <NavLink
+                to="/about"
+                onClick={() => setIsMobileOpen(false)}
+                className={({ isActive }) => 
+                  `block px-3 py-2 rounded-md text-base font-medium transition-colors ${
+                    isActive ? 'text-orange-600 bg-orange-50' : 'text-gray-700 hover:text-orange-600 hover:bg-gray-50'
+                  }`
+                }
+              >
+                About Us
+              </NavLink>
+
+              <NavLink
+                to="/gallery"
+                onClick={() => setIsMobileOpen(false)}
+                className={({ isActive }) => 
+                  `block px-3 py-2 rounded-md text-base font-medium transition-colors ${
+                    isActive ? 'text-orange-600 bg-orange-50' : 'text-gray-700 hover:text-orange-600 hover:bg-gray-50'
+                  }`
+                }
+              >
+                Gallery
+              </NavLink>
+
+              <NavLink
+                to="/contact"
+                onClick={() => setIsMobileOpen(false)}
+                className={({ isActive }) => 
+                  `block px-3 py-2 rounded-md text-base font-medium transition-colors ${
+                    isActive ? 'text-orange-600 bg-orange-50' : 'text-gray-700 hover:text-orange-600 hover:bg-gray-50'
+                  }`
+                }
+              >
+                Contact
+              </NavLink>
+
+              <NavLink
+                to="/reservations"
+                onClick={() => setIsMobileOpen(false)}
+                className={({ isActive }) => 
+                  `block w-full mt-2 px-4 py-2 rounded-md text-base font-medium text-center shadow-sm transition-colors ${
+                    isActive ? 'bg-orange-700 text-white' : 'bg-orange-600 text-white hover:bg-orange-700'
+                  }`
+                }
+              >
+                Make Reservation
+              </NavLink>
+            </div>
+          </div>
+        </header>
+
+        {/* Hero Content */}
+        <div className="relative z-10 h-full flex flex-col justify-center items-center text-center px-4">
+          <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
+            Welcome to Our Restaurant
+          </h1>
+          <p className="text-xl md:text-2xl text-white mb-8 max-w-2xl">
+            Experience the finest dining with our exquisite menu and exceptional service
+          </p>
+          <NavLink
+            to="/reservations"
+            className="px-8 py-3 bg-orange-600 text-white rounded-md text-lg font-medium hover:bg-orange-700 transition-colors shadow-lg"
           >
-            Authentic Flavors Since 2015
-          </motion.span>
-          
-          {/* Main Heading */}
-          <motion.h1 
-            className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight"
-            variants={item}
-          >
-            Savor the Taste of <span className="text-orange-400">Ruthy's</span> Kitchen
-          </motion.h1>
-          
-          {/* Description */}
-          <motion.p 
-            className="text-lg text-gray-100 mb-8 max-w-lg"
-            variants={item}
-          >
-            Experience handcrafted dishes made with love using family recipes passed down through generations. Our seasonal menu celebrates local ingredients and global flavors.
-          </motion.p>
-          
-          {/* CTA Buttons */}
-          <motion.div 
-            className="flex flex-col sm:flex-row gap-4"
-            variants={item}
-          >
-            <motion.button 
-              className="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-8 rounded-full flex items-center justify-center transition duration-300"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              View Our Menu <ArrowRight className="ml-2" size={18} />
-            </motion.button>
-            <motion.button 
-              className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-gray-900 font-semibold py-3 px-8 rounded-full transition duration-300"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Make An Order
-            </motion.button>
-          </motion.div>
+            Reserve a Table
+          </NavLink>
         </div>
-      </motion.div>
-
-      {/* Scroll Indicator - Animated */}
-      <motion.div 
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.5, duration: 0.6 }}
-      >
-        <motion.div 
-          className="w-8 h-8 text-white"
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M19 14l-7 7m0 0l-7-7m7 7V3"
-            />
-          </svg>
-        </motion.div>
-      </motion.div>
-    </section>
+      </div>
+    </>
   );
 };
 
