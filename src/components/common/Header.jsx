@@ -16,14 +16,14 @@ const Header = () => {
   };
 
   return (
-    <header className="w-full bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-gray-100">
+    <header className="w-full bg-transparent backdrop-blur-md fixed top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <div className="flex-shrink-0">
             <NavLink to="/" className="flex items-center">
               <img src={logo} alt="Restaurant Logo" className="h-12 w-auto" />
-              <span>FoodsByRuthy</span>
+              <span className="text-white font-semibold ml-2 drop-shadow-md">FoodsByRuthy</span>
             </NavLink>
           </div>
 
@@ -31,7 +31,7 @@ const Header = () => {
           <div className="md:hidden flex items-center">
             <button 
               onClick={() => setIsMobileOpen(!isMobileOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-orange-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-orange-500 transition-all"
+              className="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-orange-300 hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-orange-500 transition-all border border-white/30"
             >
               <span className="sr-only">Open main menu</span>
               {isMobileOpen ? (
@@ -47,8 +47,8 @@ const Header = () => {
             <NavLink 
               to="/" 
               className={({ isActive }) => 
-                `px-3 py-2 text-sm font-medium relative after:absolute after:left-1/2 after:-bottom-1 after:h-0.5 after:w-0 after:bg-orange-600 hover:after:w-[calc(100%-1.5rem)] hover:after:left-3 after:transition-all after:duration-300 ${
-                  isActive ? 'text-orange-600 after:w-[calc(100%-1.5rem)] after:left-3' : 'text-gray-700 hover:text-orange-600'
+                `px-3 py-2 text-sm font-medium relative after:absolute after:left-1/2 after:-bottom-1 after:h-0.5 after:w-0 after:bg-orange-400 hover:after:w-[calc(100%-1.5rem)] hover:after:left-3 after:transition-all after:duration-300 ${
+                  isActive ? 'text-orange-400 after:w-[calc(100%-1.5rem)] after:left-3' : 'text-white hover:text-orange-300 drop-shadow-md'
                 }`
               }
             >
@@ -58,8 +58,8 @@ const Header = () => {
             <NavLink 
               to="/menu" 
               className={({ isActive }) => 
-                `px-3 py-2 text-sm font-medium relative after:absolute after:left-1/2 after:-bottom-1 after:h-0.5 after:w-0 after:bg-orange-600 hover:after:w-[calc(100%-1.5rem)] hover:after:left-3 after:transition-all after:duration-300 ${
-                  isActive ? 'text-orange-600 after:w-[calc(100%-1.5rem)] after:left-3' : 'text-gray-700 hover:text-orange-600'
+                `px-3 py-2 text-sm font-medium relative after:absolute after:left-1/2 after:-bottom-1 after:h-0.5 after:w-0 after:bg-orange-400 hover:after:w-[calc(100%-1.5rem)] hover:after:left-3 after:transition-all after:duration-300 ${
+                  isActive ? 'text-orange-400 after:w-[calc(100%-1.5rem)] after:left-3' : 'text-white hover:text-orange-300 drop-shadow-md'
                 }`
               }
             >
@@ -69,8 +69,8 @@ const Header = () => {
             <NavLink 
               to="/about" 
               className={({ isActive }) => 
-                `px-3 py-2 text-sm font-medium relative after:absolute after:left-1/2 after:-bottom-1 after:h-0.5 after:w-0 after:bg-orange-600 hover:after:w-[calc(100%-1.5rem)] hover:after:left-3 after:transition-all after:duration-300 ${
-                  isActive ? 'text-orange-600 after:w-[calc(100%-1.5rem)] after:left-3' : 'text-gray-700 hover:text-orange-600'
+                `px-3 py-2 text-sm font-medium relative after:absolute after:left-1/2 after:-bottom-1 after:h-0.5 after:w-0 after:bg-orange-400 hover:after:w-[calc(100%-1.5rem)] hover:after:left-3 after:transition-all after:duration-300 ${
+                  isActive ? 'text-orange-400 after:w-[calc(100%-1.5rem)] after:left-3' : 'text-white hover:text-orange-300 drop-shadow-md'
                 }`
               }
             >
@@ -80,8 +80,8 @@ const Header = () => {
             <NavLink 
               to="/gallery" 
               className={({ isActive }) => 
-                `px-3 py-2 text-sm font-medium relative after:absolute after:left-1/2 after:-bottom-1 after:h-0.5 after:w-0 after:bg-orange-600 hover:after:w-[calc(100%-1.5rem)] hover:after:left-3 after:transition-all after:duration-300 ${
-                  isActive ? 'text-orange-600 after:w-[calc(100%-1.5rem)] after:left-3' : 'text-gray-700 hover:text-orange-600'
+                `px-3 py-2 text-sm font-medium relative after:absolute after:left-1/2 after:-bottom-1 after:h-0.5 after:w-0 after:bg-orange-400 hover:after:w-[calc(100%-1.5rem)] hover:after:left-3 after:transition-all after:duration-300 ${
+                  isActive ? 'text-orange-400 after:w-[calc(100%-1.5rem)] after:left-3' : 'text-white hover:text-orange-300 drop-shadow-md'
                 }`
               }
             >
@@ -91,8 +91,8 @@ const Header = () => {
             <NavLink 
               to="/contact" 
               className={({ isActive }) => 
-                `px-3 py-2 text-sm font-medium relative after:absolute after:left-1/2 after:-bottom-1 after:h-0.5 after:w-0 after:bg-orange-600 hover:after:w-[calc(100%-1.5rem)] hover:after:left-3 after:transition-all after:duration-300 ${
-                  isActive ? 'text-orange-600 after:w-[calc(100%-1.5rem)] after:left-3' : 'text-gray-700 hover:text-orange-600'
+                `px-3 py-2 text-sm font-medium relative after:absolute after:left-1/2 after:-bottom-1 after:h-0.5 after:w-0 after:bg-orange-400 hover:after:w-[calc(100%-1.5rem)] hover:after:left-3 after:transition-all after:duration-300 ${
+                  isActive ? 'text-orange-400 after:w-[calc(100%-1.5rem)] after:left-3' : 'text-white hover:text-orange-300 drop-shadow-md'
                 }`
               }
             >
@@ -103,7 +103,7 @@ const Header = () => {
               to="/reservations"
               className={({ isActive }) => 
                 `ml-4 px-4 py-2 rounded-md text-sm font-medium shadow-sm hover:shadow-md transition-all duration-200 ${
-                  isActive ? 'bg-orange-700 text-white' : 'bg-orange-600 text-white hover:bg-orange-700'
+                  isActive ? 'bg-orange-600 text-white' : 'bg-orange-500 text-white hover:bg-orange-600'
                 }`
               }
             >
@@ -114,14 +114,14 @@ const Header = () => {
       </div>
 
       {/* Mobile Navigation */}
-      <div className={`md:hidden transition-all duration-300 ease-in-out ${isMobileOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
-        <div className="px-2 pt-2 pb-4 space-y-1 sm:px-3 bg-white border-t border-gray-100">
+      <div className={`md:hidden transition-all duration-300 ease-in-out ${isMobileOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'} bg-gray-900/95 backdrop-blur-sm`}>
+        <div className="px-2 pt-2 pb-4 space-y-1 sm:px-3">
           <NavLink
             to="/"
             onClick={() => setIsMobileOpen(false)}
             className={({ isActive }) => 
               `block px-3 py-2 rounded-md text-base font-medium transition-colors ${
-                isActive ? 'text-orange-600 bg-orange-50' : 'text-gray-700 hover:text-orange-600 hover:bg-gray-50'
+                isActive ? 'text-orange-400 bg-gray-800' : 'text-white hover:text-orange-300 hover:bg-gray-800'
               }`
             }
           >
@@ -133,7 +133,7 @@ const Header = () => {
             onClick={() => setIsMobileOpen(false)}
             className={({ isActive }) => 
               `block px-3 py-2 rounded-md text-base font-medium transition-colors ${
-                isActive ? 'text-orange-600 bg-orange-50' : 'text-gray-700 hover:text-orange-600 hover:bg-gray-50'
+                isActive ? 'text-orange-400 bg-gray-800' : 'text-white hover:text-orange-300 hover:bg-gray-800'
               }`
             }
           >
@@ -145,7 +145,7 @@ const Header = () => {
             onClick={() => setIsMobileOpen(false)}
             className={({ isActive }) => 
               `block px-3 py-2 rounded-md text-base font-medium transition-colors ${
-                isActive ? 'text-orange-600 bg-orange-50' : 'text-gray-700 hover:text-orange-600 hover:bg-gray-50'
+                isActive ? 'text-orange-400 bg-gray-800' : 'text-white hover:text-orange-300 hover:bg-gray-800'
               }`
             }
           >
@@ -157,7 +157,7 @@ const Header = () => {
             onClick={() => setIsMobileOpen(false)}
             className={({ isActive }) => 
               `block px-3 py-2 rounded-md text-base font-medium transition-colors ${
-                isActive ? 'text-orange-600 bg-orange-50' : 'text-gray-700 hover:text-orange-600 hover:bg-gray-50'
+                isActive ? 'text-orange-400 bg-gray-800' : 'text-white hover:text-orange-300 hover:bg-gray-800'
               }`
             }
           >
@@ -169,7 +169,7 @@ const Header = () => {
             onClick={() => setIsMobileOpen(false)}
             className={({ isActive }) => 
               `block px-3 py-2 rounded-md text-base font-medium transition-colors ${
-                isActive ? 'text-orange-600 bg-orange-50' : 'text-gray-700 hover:text-orange-600 hover:bg-gray-50'
+                isActive ? 'text-orange-400 bg-gray-800' : 'text-white hover:text-orange-300 hover:bg-gray-800'
               }`
             }
           >
@@ -181,11 +181,11 @@ const Header = () => {
             onClick={() => setIsMobileOpen(false)}
             className={({ isActive }) => 
               `block w-full mt-2 px-4 py-2 rounded-md text-base font-medium text-center shadow-sm transition-colors ${
-                isActive ? 'bg-orange-700 text-white' : 'bg-orange-600 text-white hover:bg-orange-700'
+                isActive ? 'bg-orange-600 text-white' : 'bg-orange-500 text-white hover:bg-orange-600'
               }`
             }
           >
-            Make An Order
+            Make Reservation
           </NavLink>
         </div>
       </div>
