@@ -1,22 +1,65 @@
 import { ChevronDown, Menu, X } from "lucide-react";
 import logo from "../../assets/imgs/resturantLogo.png";
-import { useState } from "react";
-import { NavLink, useLocation } from "react-router-dom";
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { Link, NavLink, useLocation } from "react-router-dom";
+
+// Custom hook to detect scroll direction
+const useScrollDirection = () => {
+  const [scrollDirection, setScrollDirection] = useState('up');
+  const [prevScrollY, setPrevScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      if (currentScrollY > prevScrollY && currentScrollY > 50) {
+        setScrollDirection('down');
+      } else {
+        setScrollDirection('up');
+      }
+      
+      setPrevScrollY(currentScrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [prevScrollY]);
+
+  return scrollDirection;
+};
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isMobileDropdown, setIsMobileDropdown] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+  const scrollDirection = useScrollDirection();
 
   // Check if a path is active
   const isActive = (path) => {
     return location.pathname === path;
   };
 
+  // Handle scroll to determine if we should show background
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      setIsScrolled(scrollTop > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <header className="w-full bg-transparent backdrop-blur-md fixed top-0 z-50">
+    <header className={`
+      w-full fixed top-0 z-50 transition-all duration-300 ease-in-out
+      ${scrollDirection === 'down' && isScrolled 
+        ? 'bg-gray-900/95 backdrop-blur-md shadow-lg' 
+        : 'bg-transparent backdrop-blur-md'
+      }
+    `}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
